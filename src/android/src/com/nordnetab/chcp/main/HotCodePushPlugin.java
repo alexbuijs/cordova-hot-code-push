@@ -103,12 +103,12 @@ public class HotCodePushPlugin extends CordovaPlugin {
     @Override
     public void onStart() {
         super.onStart();
-        
+
         final EventBus eventBus = EventBus.getDefault();
         if (!eventBus.isRegistered(this)) {
             eventBus.register(this);
         }
-        
+
         // ensure that www folder installed on external storage;
         // if not - install it
         isPluginReadyForWork = isPluginReadyForWork();
@@ -119,7 +119,7 @@ public class HotCodePushPlugin extends CordovaPlugin {
         }
 
         // reload only if we on local storage
-        if (!dontReloadOnStart && webView.getUrl().startsWith(LOCAL_ASSETS_FOLDER)) {
+        if (!dontReloadOnStart && webView.getUrl() != null && webView.getUrl().startsWith(LOCAL_ASSETS_FOLDER)) {
             redirectToLocalStorageIndexPage();
         }
 
